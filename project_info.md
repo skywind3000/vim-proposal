@@ -63,7 +63,7 @@ By default, there will be an `.vimprj` folder (can be renamed by `set rootmarker
 
 ### Locating project root
 
-The project root of current file is the nearest parent directory with a folder named `.vimprj` (can be changed by set rootmarker=xxx) in it.
+The project root of current file is the nearest parent directory with a folder named `.vimprj` in it.
 
 A buffer-specific variable `v:projectroot` is used to store the project root directory of current buffer, it is initialized when you open a file as:
 
