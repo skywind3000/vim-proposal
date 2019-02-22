@@ -65,7 +65,7 @@ By default, there will be an `.vimprj` folder (can be renamed by `set rootmarker
 
 The project root of current file is the nearest parent directory with a folder named `.vimprj` (can be changed by set rootmarker=xxx) in it.
 
-A buffer-specific variable `v:project` is used to store the project root directory of current buffer, it is initialized when you open a file as:
+A buffer-specific variable `v:projectroot` is used to store the project root directory of current buffer, it is initialized when you open a file as:
 
 ```VimL
 let v:projectroot = fnamemodify(find(&rootmarker, '.;'), ':h')
@@ -83,6 +83,19 @@ If `.vimprj` can not be found in the parent directories, an empty string will be
 ```
 
 These modifiers can be used in command line or passing to `expand(xxx)`.
+
+Use modifiers to cd to the project root:
+
+    :cd %:j
+
+Open nerdtree in the project root:
+
+    :NERDTree %:j
+
+Open netrw in the project root:
+  
+    :Explore %:j
+
 
 ### Buffer local settings
 
