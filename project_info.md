@@ -27,6 +27,7 @@ Plugins can have a place to store project-specific configurations:
 - A way to locate project root (use root markers).
 - A place for plugins to read project local configurations (like `.vscode` folder in vscode).
 - A standard that plugins can follow even if running in old vims.
+- Very simple to implement.
 
 ## Solution
 
