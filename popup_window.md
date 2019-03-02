@@ -191,5 +191,5 @@ To unify and simplify the interface, this proposal suggests to provide an overla
 - erase a popup window
 - update a popup window
 
-And let user handle input themself by `getchar()`. Plugin authors can use them to create various popup windows. And make vim more friendly to new users.
+And let user handle input themself by `getchar()`. At last, makes it possible to enable users to create various popup windows with different styles.
 
