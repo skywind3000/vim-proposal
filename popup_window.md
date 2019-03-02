@@ -129,6 +129,8 @@ There are also some basic APIs for overlay buffer:
 - erase a rectangle of text.
 - command `redrawoverlay` to update the overlay (it uses double buffer to prevent flicker).
 
+With these primitive APIs, user can draw what ever they like on the overlay buffer. 
+
 ## Overlay Panes
 
 Overlay panes is an abstraction of the popup windows, it consists of:
