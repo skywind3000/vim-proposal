@@ -178,3 +178,16 @@ There are some predefined popup windows:
 - and so on.
 
 User or plugin authors can use the high level APIs provided by `popup.vim` or design their own popup window by utilizing lower level pane APIs or overlay APIs.
+
+## Summary
+
+It is complex to design an event system or NeoVim's floating window, and nearly impossible to implement every type of popup window for certain usage.
+
+To unify and simplify the interface, this proposal suggests to provide an overlay mechanism with some primitive APIs to:
+
+- render a popup window (pane)
+- erase a popup window
+- update a popup window
+
+And let user handle input themself by `getchar()`. Plugin authors can use them to create various popup windows. And make vim more friendly to new users.
+
