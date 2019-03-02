@@ -61,7 +61,8 @@ There are too many popup-related widgets for too many different usage, implement
 
 Introducing a neovim's [floating window](https://github.com/neovim/neovim/pull/6619) will take too much time (it is working in progress for almost 2-years and still not merge to master).
 
-Is this possible to unify all their needs and simplily api design ? Can we implement the popup window in a simple and adaptive way ?  
+Can we implement the popup window in a simple and adaptive way ? Is this possible to unify all their needs and simplily api design ? 
+
 
 
 ## Goals
