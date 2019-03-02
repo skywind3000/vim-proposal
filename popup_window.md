@@ -24,7 +24,7 @@ In Vim conf 2018, Bram claimed that he has [plan for this](https://vimconf.org/2
 
 Summary, there are two types of popup window: interactive and non-interactive. 
 
-For non-interactive popup windows, people want to use them to:
+For **non-interactive** popup windows, people want to use them to:
 
 - Display the documentation for a function:
 ![](images/emacs-2.png)
@@ -39,7 +39,7 @@ For non-interactive popup windows, people want to use them to:
 ![](images/kakoune-2.jpg)
 
 
-For interactive popup windows, people want to use them to:
+For **interactive** popup windows, people want to use them to:
 
 - pick an item:
 
@@ -57,19 +57,58 @@ For interactive popup windows, people want to use them to:
 
 ![](images/ex-fuzzy.png)
 
-There are too many popup-related widgets for too many different usage, implement one by one is nearly impossible. 
+There are too many popup-related widgets for certain usage, implement one by one is nearly impossible. 
 
-Introducing a neovim's [floating window](https://github.com/neovim/neovim/pull/6619) will take too much time (it is working in progress for almost 2-years and still not merge to master).
+Implementing a neovim's [floating window](https://github.com/neovim/neovim/pull/6619) will take too much time (it is working in progress for almost 2-years and still not merge to master).
 
-Can we implement the popup window in a simple and adaptive way ? Is this possible to unify all their needs and simplily api design ? 
+Can we implement the popup window in a simple and adaptive way ? Is this possible to unify all their needs and simplify api design ? 
 
-
-
-## Goals
-
-- Unify and simplify the popup window apis.
-- Adaptive and can be use to implement various popup windows and dialogs.
-- Easy to implement.
+The following parts of this article will introduce an `overlay` mechanism similar to Emacs's [text overlay](https://www.gnu.org/software/emacs/manual/html_node/elisp/Overlays.html) which is the backend of various [popup windows](https://github.com/flycheck/flycheck-popup-tip) in Emacs.
 
 
+## APIs Scope
 
+Popup windows will draw into an overlay layer, A popup will remain there after creation  until an `ease` function is called. Everything in the overlay will not interfere vim's  states, people can continue editing or using vim commands no matter there is a popup window  or not.
+
+So, the APIs are only designed for drawing a popup window and has nothing to do with interaction. Dialogs like `yes/no` box and confirm box require user input, can be simulated with following steps:
+
+
+```VimL
+function! Dialog_YesNo(...)
+    while not_quit
+       draw/update the popup window
+       get input from getchar()
+    endwhile
+    erase the popup window
+endfunc
+```
+
+Popup window APIs is not responsible for any interactive functionalities. Instead of implementing a complex widget/event system (which is too complex), it is sane to let user to handle the interaction by `getchar()`.
+
+There can be a `popup.vim` script contains some predefined popup windows/dialogs and will be shipped with vim itself. User can use the primitive APIs and `getchar()` to implement other complex dialogs like a popup fuzzy finder or a command line history completion box.
+
+
+## Overlay Buffer
+
+The overlay buffer is a character matrix with the same size of the screen:
+
+```
+|\     |\
+| \    | \
+|  \   |  \
+|   \  |   \
+|   |  |   |
+| 1 |  | 2 |   <---- Observer
+|   |  |   |
+|   /  |   /
+|  /   |  /
+| /    | /
+|/     |/
+
+^      ^
+|      |
+|   Overlay Buffer
+|
+Ground Vim screen
+ 
+```
