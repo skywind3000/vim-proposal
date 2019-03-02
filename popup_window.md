@@ -35,7 +35,7 @@ For **non-interactive** popup windows, people want to use them to:
 - Preview a portion of file (can be used to preview grep results in quickfix):
 ![](images/emacs-1.jpg)
 
-- Display funny help for newbies:
+- Display funny help for newbies (like paperclip assistent in office 2000):
 ![](images/kakoune-2.jpg)
 
 
