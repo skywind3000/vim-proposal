@@ -83,7 +83,7 @@ function! Dialog_YesNo(...)
 endfunc
 ```
 
-Popup window APIs is not responsible for any interactive functionalities. Instead of implementing a complex widget/event system (which is too complex), it is sane to let user to handle the interaction by `getchar()`.
+Popup window APIs is not responsible for any interactive functionalities. Instead of implementing a complex widget/event system (which is too complex), it is sane to let user to handle the input by `getchar()`.
 
 There can be a `popup.vim` script contains some predefined popup windows/dialogs and will be shipped with vim itself. User can use the primitive APIs and `getchar()` to implement other complex dialogs like a popup fuzzy finder or a command line history completion box.
 
