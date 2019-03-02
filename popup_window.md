@@ -70,7 +70,7 @@ The following parts of this article will introduce an `overlay` mechanism simila
 
 Popup windows will draw into an overlay layer, A popup will remain there after creation  until an `ease` function is called. Everything in the overlay will not interfere vim's  states, people can continue editing or using vim commands no matter there is a popup window  or not.
 
-So, the APIs are only designed for drawing a popup window and has nothing to do with interaction. Dialogs like `yes/no` box and confirm box require user input, can be simulated with following steps:
+So, the APIs are only designed for drawing a popup window and has nothing to do with user input. Dialogs like `yes/no` box and confirm box require user input, can be simulated with following steps:
 
 
 ```VimL
