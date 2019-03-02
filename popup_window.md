@@ -107,8 +107,74 @@ The overlay buffer is a character matrix with the same size of the screen:
 
 ^      ^
 |      |
-|   Overlay Buffer
+|   Overlay Buffer (M rows and N columns)
 |
-Ground Vim screen
+Ground Vim UI (M rows and N columns)
  
 ```
+
+Similar to Video Buffer (0xb8000) in x86's text mode, the overlay buffer is a 2D array of characters and attributes. Change the content of the 2D array will change the text in the screen.
+
+The overlay buffer is invisible by default and can be enabled by:
+
+```
+set guioptions+=o
+```
+
+Every existent text rendering code in both vim & gvim needs to be updated to support this overlay buffer, once it finished, we can use it to build powerful popup windows.
+
+There are also some basic APIs for overlay buffer:
+
+- add a text string with position and attribute.
+- erase a rectangle of text.
+- command `redrawoverlay` to update the overlay (it uses double buffer to prevent flicker).
+
+## Overlay Panes
+
+Overlay panes is an abstraction of the popup windows, it is comprised of:
+
+- position and size
+- z order (for overlapping calculation)
+- background color
+- border styles
+- lines of text and text-properties
+
+There can be multiple panes at the same time, the panes can be manipulated by:
+
+```C
+pane_create(int row, int col, int width, int height, ...);
+pane_destroy(int pane_id);
+pane_update(int pane_id, ...);
+pane_move(int pane_id, int new_row, int new_col, int new_width, int new_height);
+pane_show(int pane_id, bool show_hide);
+```
+
+(PS: they are provided as both C-apis and vim functions).
+
+The life cycle of a pane is between `pane_create` and `pane_destroy`.
+
+The (row, col) is using screen coordinate system, and there can be some functions to convert window based coordinate system to screen coordinate system. If you want to display a popup balloon right above your cursor, you can use them to calculate the position.
+
+Finally, there is a function to render the pane list into the overlay buffer:
+
+```C
+pane_flush();
+```
+
+If you create some panes, the `overlay buffer` will not change until `pane_flush()`.
+
+
+## Popup Windows
+
+All the common popup windows are implemented in `popup.vim` script, they will use `panes` to display a popup window and `getchar()` to provide interactive functionalities.
+
+There are some of the predefined popup windows:
+
+- Popup_Message(): display a "build complete" message and hide after a few seconds.
+- Popup_LinterHint(): display a message right above cursor and hide if cursor moves outside current `<cword>`.
+- Popup_Menu(): display a menu (use `getchar()` to receive user input) and quit after user select an item.
+- Popup_YesNo(): display a `yes/no` box and return the result after user made a selection.
+- ... 
+- and so on.
+
+User or plugin authors can use the high level APIs provided by `popup.vim` or design their own popup window by ultilizing lower level pane apis or overlay apis.
