@@ -22,7 +22,7 @@ In Vim conf 2018, Bram claimed that he has [plan for this](https://vimconf.org/2
 > - Let user pick an item
 > - A bit like confirm() but much nicer
 
-Summary, there are two types of popup window: interactive and non-interactive. 
+Summary, there are two types of popup window: **interactive** and **non-interactive**. 
 
 For **non-interactive** popup windows, people want to use them to:
 
