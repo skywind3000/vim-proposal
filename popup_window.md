@@ -61,14 +61,14 @@ There are too many popup-related widgets for certain usage, designing one by one
 
 Implementing a neovim's [floating window](https://github.com/neovim/neovim/pull/6619) will take too much time (it is working in progress for almost 2-years and still not merge to master).
 
-Can we implement the popup window in a simple and adaptive way ? Is this possible to unify all their needs and simplify api design ? 
+Can we implement the popup window in a simple and adaptive way ? Is this possible to unify all their needs and simplify API design ? 
 
 The following parts of this article will introduce an `overlay` mechanism similar to Emacs's [text overlay](https://www.gnu.org/software/emacs/manual/html_node/elisp/Overlays.html) which is the backend of various [popup windows](https://github.com/flycheck/flycheck-popup-tip) in Emacs.
 
 
-## APIs Scope
+## API Scope
 
-Popup windows will draw into an overlay layer, A popup will remain there after creation  until an `ease` function is called. Everything in the overlay will not interfere vim's  states, people can continue editing or using vim commands no matter there is a popup window  or not.
+Popup windows will draw into an overlay layer, A popup will remain after creation  until an `erase` function is called. Everything in the overlay will not interfere vim's  states, people can continue editing or using vim commands no matter there is a popup window  or not.
 
 So, the APIs are only designed for drawing a popup window and has nothing to do with user input. Dialogs like `yes/no` box and confirm box require user input, can be simulated with following steps:
 
@@ -121,7 +121,7 @@ The overlay buffer is invisible by default and can be enabled by:
 set guioptions+=o
 ```
 
-Every existent text rendering code in both vim & gvim needs to be updated to support this overlay buffer, once it finished, we can use it to build powerful popup windows.
+Every existent text rendering code in both Vim & GVim needs to be updated to support this overlay buffer, once it finished, we can use it to build powerful popup windows.
 
 There are also some basic APIs for overlay buffer:
 
@@ -131,7 +131,7 @@ There are also some basic APIs for overlay buffer:
 
 ## Overlay Panes
 
-Overlay panes is an abstraction of the popup windows, it is comprised of:
+Overlay panes is an abstraction of the popup windows, it is consisted of:
 
 - position and size
 - z order (for overlapping calculation)
@@ -168,7 +168,7 @@ If you create some panes, the `overlay buffer` will not change until `pane_flush
 
 All the common popup windows are implemented in `popup.vim` script, they will use `panes` to display a popup window and `getchar()` to provide interactive functionalities.
 
-There are some of the predefined popup windows:
+There are some predefined popup windows:
 
 - Popup_Message(): display a "build complete" message and hide after a few seconds.
 - Popup_LinterHint(): display a message right above cursor and hide if cursor moves outside current `<cword>`.
@@ -177,4 +177,4 @@ There are some of the predefined popup windows:
 - ... 
 - and so on.
 
-User or plugin authors can use the high level APIs provided by `popup.vim` or design their own popup window by ultilizing lower level pane apis or overlay apis.
+User or plugin authors can use the high level APIs provided by `popup.vim` or design their own popup window by utilizing lower level pane APIs or overlay APIs.
