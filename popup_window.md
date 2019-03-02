@@ -57,7 +57,7 @@ For interactive popup windows, people want to use them to:
 
 ![](images/ex-fuzzy.png)
 
-There are too many popup-related widgets for too many different needs, implement one by one is nearly impossible. 
+There are too many popup-related widgets for too many different usage, implement one by one is nearly impossible. 
 
 Introducing a neovim's [floating window](https://github.com/neovim/neovim/pull/6619) will take too much time (it is working in progress for almost 2-years and still not merge to master).
 
