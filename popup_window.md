@@ -131,7 +131,7 @@ There are also some basic APIs for overlay buffer:
 
 ## Overlay Panes
 
-Overlay panes is an abstraction of the popup windows, it is consisted of:
+Overlay panes is an abstraction of the popup windows, it consists of:
 
 - position and size
 - z order (for overlapping calculation)
