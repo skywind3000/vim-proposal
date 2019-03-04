@@ -8,7 +8,8 @@ Vim has already got some builtin popup-widgets for certain usage, like completio
 - 2948: [balloon_show doesn't display the balloon](https://github.com/vim/vim/issues/2948)
 - 2352: [Call to balloon_show() doesn't show the balloon in the terminal](https://github.com/vim/vim/issues/2352)
 - 3811: [Feature Request: Trigger balloon via keyboard at cursor position](https://github.com/vim/vim/issues/3811)
-- (YCM): [Implement argument completion/hints](https://github.com/Valloric/YouCompleteMe/issues/234)
+- 0234: [Implement argument completion/hints](https://github.com/Valloric/YouCompleteMe/issues/234)
+- 2718: [Display function prototype in the cmdline](https://github.com/Valloric/YouCompleteMe/issues/2718)
 - [RFC: Signature help/argument hints in a second popup menu](https://groups.google.com/forum/#!searchin/vim_dev/argument$20hints%7Csort:date/vim_dev/YntCTlqdVyc/Me8uwfBpAgAJ)
 
 In Vim conf 2018, Bram claimed that he has [plan for this](https://vimconf.org/2018/slides/Vim_From-hjkl-to-a-platform-for-plugins.pdf) already: 
