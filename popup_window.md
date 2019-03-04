@@ -8,6 +8,8 @@ Vim has already got some builtin popup-widgets for certain usage, like completio
 - 2948: [balloon_show doesn't display the balloon](https://github.com/vim/vim/issues/2948)
 - 2352: [Call to balloon_show() doesn't show the balloon in the terminal](https://github.com/vim/vim/issues/2352)
 - 3811: [Feature Request: Trigger balloon via keyboard at cursor position](https://github.com/vim/vim/issues/3811)
+- (YCM): [Implement argument completion/hints](https://github.com/Valloric/YouCompleteMe/issues/234)
+- [RFC: Signature help/argument hints in a second popup menu](https://groups.google.com/forum/#!searchin/vim_dev/argument$20hints%7Csort:date/vim_dev/YntCTlqdVyc/Me8uwfBpAgAJ)
 
 In Vim conf 2018, Bram claimed that he has [plan for this](https://vimconf.org/2018/slides/Vim_From-hjkl-to-a-platform-for-plugins.pdf) already: 
 
@@ -27,35 +29,42 @@ Summary, there are two types of popup window: **interactive** and **non-interact
 For **non-interactive** popup windows, people want to use them to:
 
 - Display the documentation for a function:
-![](images/emacs-2.png)
+
+![emacs-2](https://user-images.githubusercontent.com/3035071/53684507-46213880-3d49-11e9-822e-44f6520c00f9.png)
 
 - Display linting errors or warnings:
-![](images/kakoune-1.jpg)
+
+![kakoune-1](https://user-images.githubusercontent.com/3035071/53684508-4f120a00-3d49-11e9-8bff-2e68aba12917.jpg)
 
 - Preview a portion of file (can be used to preview grep results in quickfix):
-![](images/emacs-1.jpg)
+
+![emacs-1](https://user-images.githubusercontent.com/3035071/53684510-56d1ae80-3d49-11e9-9b6e-f3735784c258.jpg)
 
 - Display funny help for newbies (like paperclip assistent in office 2000):
-![](images/kakoune-2.jpg)
+
+![kakoune-2](https://user-images.githubusercontent.com/3035071/53684518-5cc78f80-3d49-11e9-8cac-7883d3052ae6.jpg)
 
 
 For **interactive** popup windows, people want to use them to:
 
 - pick an item:
 
-![](images/ex-pick.png)
+![ex-pick](https://user-images.githubusercontent.com/3035071/53684524-65b86100-3d49-11e9-9593-d133d00e324b.png)
+
 
 - display a nice popup menu:
 
-![](images/ex-menu.png)
+![ex-menu](https://user-images.githubusercontent.com/3035071/53684526-6b15ab80-3d49-11e9-96ae-bc3b5e1f52c9.png)
+
 
 - cmd line completion:
 
-![](images/ex-cmdline.png)
+![ex-cmdline](https://user-images.githubusercontent.com/3035071/53684527-723cb980-3d49-11e9-9b6b-1a6ca7f1a19c.png)
 
 - use fuzzy finder in a popup window:
 
-![](images/ex-fuzzy.png)
+![ex-fuzzy](https://user-images.githubusercontent.com/3035071/53684528-7963c780-3d49-11e9-8c69-5d8d7b1b7cc2.png)
+
 
 There are too many popup-related widgets for certain usage, designing one by one is nearly impossible. 
 
@@ -193,3 +202,5 @@ To unify and simplify the interface, this proposal suggests to provide an overla
 
 And let user handle input themself by `getchar()`. At last, makes it possible to enable users to create various popup windows with different styles and functionalities.
 
+--
+2019/3/2 edit: floating window got merged to master.
