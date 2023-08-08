@@ -146,3 +146,15 @@ It is precisely because of Lua’s shortcomings that language fragmentation has 
 
 Comparing with TypeScript mentioned earlier, who is more beautiful and who is uglier? Who is better and who is worse? It is clear at a glance.
 
+## Error indentification
+
+TypeScript has a well-designed compiler and linter that can help you identify errors in the editor during the compilation or editing phase.
+
+With Lua, you have to run the code to find out where the error occurred. This is Lua’s so-called "Less is more" approach, where it doesn’t tell you where the mistake is and instead lets you step on the landmine during runtime. In the end, you spend more time paying the price for its shortcomings.
+
+Therefore, Lua is not suitable for writing large programs. When the program becomes large, Lua code tends to become fragmented and loses maintainability.
+
+Lua has a confusing rhetoric, which goes like, "Lua’s positioning has always been small and refined, not like Python/Java." If you truly only use Lua to write small code snippets or configurations of one or two hundred lines, I have no objections. 
+
+However, when it comes to complex plugin development, where Lua is often used to write 10k+ of lines of new plugins/modules, it is no longer appropriate to use the "small and refined positioning" as an excuse for its syntactic shortcomings in the face of complexity and maintainability.
+
