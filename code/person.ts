@@ -10,6 +10,6 @@ class Person {
     }
 
     toString(): string {
-        return `${this.name} (${this.age}) (${this.salary})`
+        return `${this.name} (${this.age}) (${this.salary})`;
     }
 }

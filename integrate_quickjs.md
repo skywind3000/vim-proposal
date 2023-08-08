@@ -63,13 +63,11 @@ The division already exists and will not be eliminated simply because vim integr
 
 QuickJS is being widely used in game development nowadays. Additionally, it is also being utilized in mobile apps as an alternative to the big V8 engine.
 
-I am not the only one endorsing JavaScript/TypeScript, there are many ongoing projects such as denops.vim and coc.nvim, which enable writing plugins in JS/TS.
-
 The cost of integrating QuickJS into Vim is minimal, as it will only increase the binary size by approximately 210KB. However, the benefits are huge, since adopting the JavaScript/TypeScript ecosystem can greatly contribute to Vim's enhancement and success.
 
 ## Side-by-side comparison
 
-Declaring a class in TypeScript is very straightforward.:
+Declaring a class in TypeScript is very straightforward:
 
 ![](https://github.com/skywind3000/vim-proposal/blob/master/images/class-ts.png?raw=true)
 
@@ -157,4 +155,22 @@ Therefore, Lua is not suitable for writing large programs. When the program beco
 Lua has a confusing rhetoric, which goes like, "Lua’s positioning has always been small and refined, not like Python/Java." If you truly only use Lua to write small code snippets or configurations of one or two hundred lines, I have no objections. 
 
 However, when it comes to complex plugin development, where Lua is often used to write 10k+ of lines of new plugins/modules, it is no longer appropriate to use the "small and refined positioning" as an excuse for its syntactic shortcomings in the face of complexity and maintainability.
+
+## Existing attempt in Vim
+
+I am not the only one who endorse JavaScript/TypeScript; there are several famous projects that allow writing plugins in JS/TS:
+
+- [CoC](https://github.com/neoclide/coc.nvim): Nodejs extension host for vim & neovim, load extensions like VSCode and host language servers. There are [323 CoC packages](https://www.npmjs.com/search?q=keywords%3Acoc.nvim) written in JavaScript or TypeScript.
+- [denops.vim](https://github.com/vim-denops/denops.vim): created by vim-jp, allows developers to write plugins in TypeScript/Deno. 
+
+It can be seen from this that many programmers hope to use TS/JS to extend Vim. We can't simply ignore that there are 323 npm packages powered by CoC.
+
+These two projects have already proven the feasibility of using JavaScript/TypeScript in Vim.
+
+## Summary
+
+Introducing TypeScript/JavaScript to Vim does not mean replacing vim9script. Just provide more possibilities. It could also be a significant opportunity to rejuvenate and enhance Vim’s greatness once again.
+
+
+
 
