@@ -83,3 +83,66 @@ console.log(p.toString())
 
 Isn’t this how a program should be written?
 
+In Lua, the concept of "less is more" means that it doesn’t provide a built-in class construct. Instead, it suggests using tables and the setmetatable function to simulate classes:
+
+```lua
+Person = {}
+Person.__index = Person
+
+function Person:create(name, age, salary)
+	local obj = {}
+	setmetatable(obj, Person)
+	obj.name = name
+	obj.age = age
+	obj.salary = salary
+	return obj
+end
+
+function Person:toString()
+	return self.name .. ' (' .. self.age .. ') (' .. self.salary .. ')'
+end
+
+local p = Person:create('skywind', 18, 1800)
+print(p:toString())
+```
+
+Honestly, tell me which kind of code you would prefer to write? Lua’s approach to class definition can indeed appear messy at first glance, and it becomes even more challenging when dealing with inheritance. The use of the `":"` symbol in Lua is also unconventional compared to mainstream languages.
+
+Writing this type of program can easily become a tangled mess when it grows larger. It’s prone to mistakes, and you may not even realize that you forgot to write a line like `Person.__index = Person`, which could lead to unpredictable outcomes. Many new technologies aim to simplify existing ones, but often end up adding more complexity. In other languages, defining a basic class is a simple task, but in Lua, it becomes quite frustrating.
+
+In some projects, to simplify this matter, they have implemented a function called `"class"`` that allows you to define a class like this:
+
+```Lua
+Account = class(function(acc,balance)
+              acc.balance = balance
+           end)
+
+function Account:withdraw(amount)
+   self.balance = self.balance - amount
+end
+
+-- can create an Account using call notation!
+acc = Account(1000)
+acc:withdraw(100)
+```
+
+Does it look good? Not really, but it helps you handle the tedious tasks like setmetatable and inheritance, avoiding any omissions. However, the `"class"` implementation in this project is not compatible with classes implemented in other projects. They cannot inherit from each other, and even the instantiation process can have multiple approaches:
+
+```lua
+p = Person:create("project1", 18, 1800)
+p = Person:new("project2", 18, 1800)
+p = Person("project3", 18, 1800)
+```
+
+The instantiation functions in Project 1 and Project 2 have different names. Project 3 has its own implementation of a class, where you directly call the class name. The classes implemented in the first project cannot be called using the approach used in the second project.
+
+Without a standard, collaboration becomes difficult. Even the external editor/IDE finds it challenging to understand what kind of class you have defined or what members it contains. As a result, you don’t receive much assistance and support during development.
+
+After writing code in this way for a while, you may find yourself questioning why you are wasting so much time on the seemingly unnecessary task of ensuring compatibility in class definitions. Why can’t we have a unified approach like in TypeScript/JavaScript, where all projects use the new keyword for instantiation and the class keyword for declaration?
+
+At this point, Lua gurus would tell you, "This is called the **Less is more** principle, and you don’t understand it." Doesn’t that make you feel like smashing your keyboard?
+
+It is precisely because of Lua’s shortcomings that language fragmentation has occurred. Each project has to come up with its own set of fundamental things, making it difficult for code to be reused between projects and knowledge to accumulate. Most Lua code is difficult to exist independently from the project it belongs to, resulting in a lack of knowledge accumulation. The consequence is that, although Lua is 21 years older than TypeScript, the number of open source projects using Lua is less than 1/10 of those using TypeScript.
+
+Comparing with TypeScript mentioned earlier, who is more beautiful and who is uglier? Who is better and who is worse? It is clear at a glance.
+
