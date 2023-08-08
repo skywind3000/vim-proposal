@@ -69,3 +69,17 @@ The cost of integrating QuickJS into Vim is minimal, as it will only increase th
 
 ## Side-by-side comparison
 
+Declaring a class in TypeScript is very straightforward.:
+
+![](https://github.com/skywind3000/vim-proposal/blob/master/images/class-ts.png?raw=true)
+
+
+Creating an instance is also clear and easy:
+
+```TypeScript
+var p = new Person("skywind", 18, 1800)
+console.log(p.toString())
+```
+
+Isn’t this how a program should be written?
+
