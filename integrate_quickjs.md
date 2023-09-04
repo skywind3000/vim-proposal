@@ -108,7 +108,7 @@ Honestly, tell me which kind of code you would prefer to write? Lua’s approach
 
 Writing this type of program can easily become a tangled mess when it grows larger. It’s prone to mistakes, and you may not even realize that you forgot to write a line like `Person.__index = Person`, which could lead to unpredictable outcomes. Many new technologies aim to simplify existing ones, but often end up adding more complexity. In other languages, defining a basic class is a simple task, but in Lua, it becomes quite frustrating.
 
-In some projects, to simplify this matter, they have implemented a function called `"class"`` that allows you to define a class like this:
+In some projects, to simplify this matter, they have implemented a function called `"class"` that allows you to define a class like this:
 
 ```Lua
 Account = class(function(acc,balance)
@@ -174,3 +174,18 @@ Introducing TypeScript/JavaScript to Vim does not mean replacing vim9script. Jus
 
 
 
+## Q&A
+
+- not right timing.
+
+That's a reasonable point, I have also hesitated about whether posting this idea would seem disrespectful to Bram’s wishes.
+
+But I saw someone have already posted related point [here](https://github.com/vim/vim/discussions/12736#discussioncomment-6652482):
+
+So I thought the discussion may have already begun. The problem lies here: someone other than me has also spotted it out.
+
+I have asked many ignorant questions in the issues, and every time Bram responded to me with wisdom and patience. I greatly appreciated that and felt ashamed every time he corrected me. I also hope that the community can have the same broad-mindedness and magnanimity as Bram did. If there are any technical errors in my arguments, I wish someone can help point them out to me, if this is not the right moment, feel free to replay it at the right time.
+
+I have been contemplating this issue for over a year. If vim9script could continue to progress, I would never publish this post. However, now there have been some changes in the situation.
+
+Today, I spent 5 hours preparing this post with the sole purpose of making Vim better to the new users.
